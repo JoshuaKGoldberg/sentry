@@ -3,12 +3,13 @@ import {RouteComponentProps} from 'react-router';
 
 import {switchOrganization} from 'sentry/actionCreators/organizations';
 import useRouteAnalyticsHookSetup from 'sentry/utils/routeAnalytics/useRouteAnalyticsHookSetup';
-import OrganizationContextContainer from 'sentry/views/organizationContextContainer';
+import OrganizationLayout from 'sentry/views/organizationLayout';
 
 import Body from './body';
 
-type Props = RouteComponentProps<{orgId?: string}, {}> &
-  Partial<React.ComponentProps<typeof OrganizationContextContainer>>;
+interface Props extends RouteComponentProps<{orgId?: string}, {}> {
+  children: React.ReactNode;
+}
 
 function OrganizationDetails({children, ...props}: Props) {
   // Switch organizations when the orgId changes
@@ -28,9 +29,9 @@ function OrganizationDetails({children, ...props}: Props) {
   }, [props.params.orgId]);
 
   return (
-    <OrganizationContextContainer includeSidebar useLastOrganization {...props}>
+    <OrganizationLayout includeSidebar>
       <Body>{children}</Body>
-    </OrganizationContextContainer>
+    </OrganizationLayout>
   );
 }
 

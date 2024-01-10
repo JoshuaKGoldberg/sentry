@@ -58,11 +58,7 @@ describe('OrganizationDetails', function () {
     });
 
     render(
-      <OrganizationDetails
-        {...routerProps}
-        params={{orgId: 'org-slug'}}
-        includeSidebar={false}
-      >
+      <OrganizationDetails {...routerProps} params={{orgId: 'org-slug'}}>
         <div />
       </OrganizationDetails>
     );

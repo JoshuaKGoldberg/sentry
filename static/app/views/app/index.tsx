@@ -25,6 +25,7 @@ import useApi from 'sentry/utils/useApi';
 import {useColorscheme} from 'sentry/utils/useColorscheme';
 import {useHotkeys} from 'sentry/utils/useHotkeys';
 import type {InstallWizardProps} from 'sentry/views/admin/installWizard';
+import {OrganizationContextProvider} from 'sentry/views/organizationContext';
 
 import SystemAlerts from './systemAlerts';
 
@@ -209,12 +210,14 @@ function App({children, params}: Props) {
 
   return (
     <Profiler id="App" onRender={onRenderCallback}>
-      <MainContainer tabIndex={-1} ref={mainContainerRef}>
-        <GlobalModal onClose={handleModalClose} />
-        <SystemAlerts className="messages-container" />
-        <Indicators className="indicators-container" />
-        <ErrorBoundary>{renderBody()}</ErrorBoundary>
-      </MainContainer>
+      <OrganizationContextProvider>
+        <MainContainer tabIndex={-1} ref={mainContainerRef}>
+          <GlobalModal onClose={handleModalClose} />
+          <SystemAlerts className="messages-container" />
+          <Indicators className="indicators-container" />
+          <ErrorBoundary>{renderBody()}</ErrorBoundary>
+        </MainContainer>
+      </OrganizationContextProvider>
     </Profiler>
   );
 }
