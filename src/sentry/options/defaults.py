@@ -311,7 +311,7 @@ register(
 )
 register(
     "symbolicator.options",
-    default={"url": "http://localhost:3021"},
+    default={"url": "http://127.0.0.1:3021"},
     flags=FLAG_ALLOW_EMPTY | FLAG_PRIORITIZE_DISK | FLAG_AUTOMATOR_MODIFIABLE,
 )
 
@@ -333,7 +333,7 @@ register(
 )
 register(
     "chart-rendering.chartcuterie",
-    default={"url": "http://localhost:7901"},
+    default={"url": "http://127.0.0.1:7901"},
     flags=FLAG_ALLOW_EMPTY | FLAG_PRIORITIZE_DISK | FLAG_AUTOMATOR_MODIFIABLE,
 )
 # Leaving these empty will use the same storage driver configured for
